@@ -15,6 +15,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [currentCategoryId, setCurrentCategoryId] = useState(undefined);
   const [currentSubCategoryId, setCurrentSubCategoryId] = useState(undefined);
+  const [tabChoice, setTabChoice] = useState("hot"); // "hot" | "new" | "history"
 
   const { status, value, error } = useAsync(getCategories, true);
   useEffect(() => {
@@ -46,6 +47,12 @@ function App() {
     setCurrentSubCategoryId(id);
   };
 
+  const handleSwitchTabChoice = (newChoice) => {
+    if (tabChoice !== newChoice) {
+      setTabChoice(newChoice);
+    }
+  };
+
   const currentCategory = categories.find(
     (c) => c.category_id === currentCategoryId
   );
@@ -62,17 +69,21 @@ function App() {
         currentCategoryId={currentCategoryId}
         handleSwitchCategory={handleSwitchCategory}
       />
-      
+
       <SubCategoryTab
         subCategories={subCategories}
         currentSubCategoryId={currentSubCategoryId}
         handleSwitchSubCategory={handleSwitchSubCategory}
       />
-      
-      <PostList />
-      
-      <MainTab />
 
+      <PostList
+        tabChoice={tabChoice}
+      />
+
+      <MainTab
+        tabChoice={tabChoice}
+        handleSwitchTabChoice={handleSwitchTabChoice}
+      />
     </S.Container>
   );
 }
