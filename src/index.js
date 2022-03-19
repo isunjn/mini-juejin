@@ -1,13 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 import App from './components/App';
+import CategoriesView from './components/CategoriesView/CategoriesView';
+import SubCategoriesView from './components/SubCategoriesView/SubCategoriesView';
 
 import GlobalStyle from './common/GlobalStyle';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <App />
+    <BrowserRouter>
+      <GlobalStyle />
+      <Routes>
+        <Route path="/" element={<App />} >
+          <Route index element={<Navigate to="/v/0" replace={true} />} />
+
+          <Route path="p" element={<>xxx</>} >
+            <Route path=":postId" element={<>vvv</>} />
+          </Route>
+
+          <Route path="v/:categoryId" element={<CategoriesView />} >
+            <Route index element={<SubCategoriesView />} />
+            <Route path=":subCategoryId" element={<SubCategoriesView />} />
+          </Route>
+
+          <Route path="*" element={<p>404</p>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

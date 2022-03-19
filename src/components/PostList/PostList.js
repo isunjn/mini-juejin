@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+
+import MainTab from "../MainTab";
 
 import { getArticles } from "../../services";
 import getTimeDistanceStr from "../../utils/getTimeDistanceStr";
@@ -10,8 +13,11 @@ import commentIcon from "../../static/comment.png";
 
 import * as S from "./style";
 
-function PostList({ tabChoice, categoryId }) {
+function PostList({ categoryId }) {
   // TODO: history tab
+  
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [articles, setArticles] = useState([]);
 
@@ -19,22 +25,35 @@ function PostList({ tabChoice, categoryId }) {
   useEffect(() => {
     setIsFetching(true);
     async function fetchArticles() {
-      const resp = await getArticles(categoryId, tabChoice);
+      const sortBy = searchParams.get("sort") || "hot";
+      const resp = await getArticles(categoryId, sortBy);
       setArticles(resp.data.articles);
       setIsFetching(false);
     }
     fetchArticles();
-  }, [tabChoice, categoryId]);
+  }, [searchParams, categoryId]);
 
   if (isFetching) {
-    // TODO: handle
     return <>Loading</>;
   }
+
+  const handleSwitchSortBy = (newSortBy) => {
+    setSearchParams({
+      "sort": newSortBy
+    });
+  };
+
+  const handleOpenPost = (id) =>  {
+    navigate("/p/" + id);
+  };
 
   return (
     <S.Container>
       {articles.map((article) => (
-        <S.ListItem key={article.article_id}>
+        <S.ListItem 
+          key={article.article_id}
+          onClick={() => handleOpenPost(article.article_id)}
+        >
           <S.ListItemTop>
             <span>{article.author_user_info.user_name}</span>
             <span>
@@ -71,6 +90,10 @@ function PostList({ tabChoice, categoryId }) {
           </S.ListItemBottom>
         </S.ListItem>
       ))}
+
+      <MainTab
+        handleSwitchSortBy={handleSwitchSortBy}
+      />
     </S.Container>
   );
 }
