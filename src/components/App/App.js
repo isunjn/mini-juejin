@@ -78,6 +78,7 @@ function App() {
 
       <PostList
         tabChoice={tabChoice}
+        categoryId={currentSubCategoryId ? currentSubCategoryId : currentCategoryId}
       />
 
       <MainTab
