@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.main`
   width: 100%;
-  margin: 2em 0 6em;
+  margin: 2em 0;
   background-color: whitesmoke;
 `;
 
