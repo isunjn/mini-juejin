@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
-import { getCategories } from "../../services";
+import MainTab from "../MainTab";
+
+import { getCategories } from "../../services/fake-api";
 import useAsync from "../../hooks/useAsync";
 
 import * as S from "./style";
@@ -27,6 +29,8 @@ function App() {
       {(status === "idle" || status === "pending") && <p>Loading</p>}
       {status === "error" && <p>Somthing went wrong: {error}</p>}
       {status === "success" && <Outlet context={categories} />}
+
+      <MainTab />
 
     </S.Container>
   );

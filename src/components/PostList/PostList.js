@@ -1,9 +1,5 @@
-import { useState, useEffect } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import MainTab from "../MainTab";
-
-import { getArticles } from "../../services";
 import getTimeDistanceStr from "../../utils/getTimeDistanceStr";
 import getCountStr from "../../utils/getCountStr";
 
@@ -13,35 +9,8 @@ import commentIcon from "../../static/comment.png";
 
 import * as S from "./style";
 
-function PostList({ categoryId }) {
-  // TODO: history tab
-  
+function PostList({ articles }) {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const [articles, setArticles] = useState([]);
-
-  const [isFetching, setIsFetching] = useState(false);
-  useEffect(() => {
-    setIsFetching(true);
-    async function fetchArticles() {
-      const sortBy = searchParams.get("sort") || "hot";
-      const resp = await getArticles(categoryId, sortBy);
-      setArticles(resp.data.articles);
-      setIsFetching(false);
-    }
-    fetchArticles();
-  }, [searchParams, categoryId]);
-
-  if (isFetching) {
-    return <>Loading</>;
-  }
-
-  const handleSwitchSortBy = (newSortBy) => {
-    setSearchParams({
-      "sort": newSortBy
-    });
-  };
 
   const handleOpenPost = (id) =>  {
     navigate("/p/" + id);
@@ -90,10 +59,6 @@ function PostList({ categoryId }) {
           </S.ListItemBottom>
         </S.ListItem>
       ))}
-
-      <MainTab
-        handleSwitchSortBy={handleSwitchSortBy}
-      />
     </S.Container>
   );
 }

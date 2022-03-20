@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import App from './components/App';
-import CategoriesView from './components/CategoriesView/CategoriesView';
-import SubCategoriesView from './components/SubCategoriesView/SubCategoriesView';
+import CategoriesView from './components/CategoriesView';
+import SubCategoriesView from './components/SubCategoriesView';
+import HistoryView from './components/HistoryView';
 import Post from './components/Post/Post';
 
 import GlobalStyle from './common/GlobalStyle';
@@ -23,6 +24,8 @@ ReactDOM.render(
             <Route index element={<SubCategoriesView />} />
             <Route path=":subCategoryId" element={<SubCategoriesView />} />
           </Route>
+
+          <Route path="h" element={<HistoryView />} />
 
           <Route path="*" element={<p>404</p>} />
         </Route>
