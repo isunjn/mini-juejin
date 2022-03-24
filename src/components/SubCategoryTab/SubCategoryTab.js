@@ -11,8 +11,11 @@ function SubCategoryTab() {
   const mainCategory = categories.find(
     (category) => category.category_name === params.categoryName
   );
-  const subCategories = mainCategory.children;
+  if (!mainCategory) {
+    return null;
+  }
 
+  const subCategories = mainCategory.children;
   return (
     <>
       {subCategories && (

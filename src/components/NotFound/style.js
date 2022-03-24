@@ -5,13 +5,15 @@ export const Container = styled.div`
   margin-top: 5em;
 
   div {
-    font-size: 3em;
+    width: max-content;
+    font-size: 2em;
     font-weight: bold;
     color: #1e80ff;
     margin: 0 auto;
   }
 
   a {
+    width: max-content;
     display: block;
     font-size: 1.25em;
     margin: 0 auto;

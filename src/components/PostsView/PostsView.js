@@ -4,22 +4,25 @@ import { useParams, useSearchParams } from "react-router-dom";
 import SortByTab from "./SortByTab";
 import PostList from "../PostList";
 import Loader from "../Loader";
+import NotFound from "../NotFound";
 
 import { getArticles } from "../../services/fake-api";
 
 import { CategoriesContext } from "../../Contexts/CategoriesContext";
 
-
 function PostsView() {
   const categories = useContext(CategoriesContext);
   const params = useParams();
 
+  let notFound = false;
   let theCategoryId = 0;
   if (params.categoryName) {
     const mainCategory = categories.find(
       (category) => category.category_name === params.categoryName
     );
-    if (params.subCategoryName) {
+    if (!mainCategory) {
+      notFound = true;
+    } else if (params.subCategoryName) {
       const subCategory = mainCategory.children.find(
         (category) => category.category_name === params.subCategoryName
       );
@@ -50,17 +53,20 @@ function PostsView() {
 
   const handleSwitchSortBy = (newSortBy) => {
     setSearchParams({
-      "sort": newSortBy
+      sort: newSortBy,
     });
   };
 
-
   return (
     <>
-      <SortByTab sortBy={sortBy} handleSwitchSortBy={handleSwitchSortBy} />
-
-      {isFetching && <Loader />}
-      {articles && <PostList articles={articles} />}
+      {notFound && <NotFound />}
+      {!notFound && (
+        <>
+          <SortByTab sortBy={sortBy} handleSwitchSortBy={handleSwitchSortBy} />
+          {isFetching && <Loader />}
+          {articles && <PostList articles={articles} />}
+        </>
+      )}
     </>
   );
 }
