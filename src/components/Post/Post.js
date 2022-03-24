@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import Comments from "../Comments";
+import Comments from "./Comments";
 
 import { getArticleById } from "../../services/fake-api";
 import { addToHistory } from "../../services/history";

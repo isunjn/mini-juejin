@@ -7,7 +7,7 @@ function MainTab() {
   return (
     <S.Container>
       <NavLink to="/">文章</NavLink>
-      <NavLink to="/h">历史</NavLink>
+      <NavLink to="/history">历史</NavLink>
     </S.Container>
   );
 }

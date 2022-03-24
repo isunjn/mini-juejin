@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { getCommentsByArticleId } from "../../services/fake-api";
-import getTimeDistanceStr from "../../utils/getTimeDistanceStr";
+import { getCommentsByArticleId } from "../../../services/fake-api";
+import getTimeDistanceStr from "../../../utils/getTimeDistanceStr";
 
 import * as S from "./style";
 

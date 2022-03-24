@@ -5,7 +5,7 @@ import PostList from "../PostList";
 import { getArticleById } from "../../services/fake-api";
 import { getHistory, needToFetchHistory } from "../../services/history";
 
-function HistoryView() {
+function History() {
   const [articles, setArticles] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
 
@@ -39,4 +39,4 @@ function HistoryView() {
   );
 }
 
-export default HistoryView;
+export default History;

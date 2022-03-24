@@ -13,7 +13,7 @@ function PostList({ articles }) {
   const navigate = useNavigate();
 
   const handleOpenPost = (id) =>  {
-    navigate("/p/" + id);
+    navigate("/post/" + id);
   };
 
   return (

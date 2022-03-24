@@ -1,38 +1,74 @@
 import React, { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 
+import Nav from "../Nav";
+import MainContent from "../MainContent";
 import MainTab from "../MainTab";
+import CategoryTab from "../CategoryTab";
+import SubCategoryTab from "../SubCategoryTab";
+import PostsView from "../PostsView";
+import History from "../History";
+import Post from "../Post";
+
+import { CategoriesContext } from "../../Contexts/CategoriesContext";
 
 import { getCategories } from "../../services/fake-api";
-import useAsync from "../../hooks/useAsync";
 
 import * as S from "./style";
-import logo from "../../static/logo-withtext.svg";
 
 function App() {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(null);
+  const [isFetching, setIsFetching] = useState(false);
 
-  const { status, value, error } = useAsync(getCategories, true);
   useEffect(() => {
-    if (value) {
-      const categories = value.data.categories;
-      setCategories(categories);
+    async function fetchCategories() {
+      setIsFetching(true);
+      const resp = await getCategories();
+      setCategories(resp.data.categories);
+      setIsFetching(false);
     }
-  }, [value]);
+    fetchCategories();
+  }, []);
 
   return (
-    <S.Container>
-      <S.Header>
-        <img src={logo} alt="logo" />
-      </S.Header>
+    <>
+      {isFetching && <p>Loading</p>}
+      {categories && (
+        <CategoriesContext.Provider value={categories}>
+          <S.Nav>
+            <Routes>
+              <Route path="/" element={<Nav />}>
+                <Route index element={<CategoryTab />} />
+                <Route path=":categoryName" element={<CategoryTab />}>
+                  <Route index element={<SubCategoryTab />} />
+                  <Route path=":subCategoryName" element={<SubCategoryTab />} />
+                </Route>
+                <Route path="history" element={null} />
+                <Route path="post/:postId" element={null} />
+                <Route path="*" element={null} />
+              </Route>
+            </Routes>
+          </S.Nav>
 
-      {(status === "idle" || status === "pending") && <p>Loading</p>}
-      {status === "error" && <p>Somthing went wrong: {error}</p>}
-      {status === "success" && <Outlet context={categories} />}
+          <S.MainContent>
+            <Routes>
+              <Route path="/" element={<MainContent />}>
+                <Route index element={<PostsView />} />
+                <Route path=":categoryName" element={<Outlet />} >
+                  <Route index element={<PostsView />} />
+                  <Route path=":subCategoryName" element={<PostsView />} />
+                </Route>
+                <Route path="history" element={<History />} />
+                <Route path="post/:postId" element={<Post />} />
+                <Route path="*" element={<p>404</p>} />
+              </Route>
+            </Routes>
+          </S.MainContent>
 
-      <MainTab />
-
-    </S.Container>
+          <MainTab />
+        </CategoriesContext.Provider>
+      )}
+    </>
   );
 }
 
