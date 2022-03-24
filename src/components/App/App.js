@@ -9,6 +9,8 @@ import SubCategoryTab from "../SubCategoryTab";
 import PostsView from "../PostsView";
 import History from "../History";
 import Post from "../Post";
+import NotFound from "../NotFound";
+import Loader from "../Loader";
 
 import { CategoriesContext } from "../../Contexts/CategoriesContext";
 
@@ -32,7 +34,7 @@ function App() {
 
   return (
     <>
-      {isFetching && <p>Loading</p>}
+      {isFetching && <Loader />}
       {categories && (
         <CategoriesContext.Provider value={categories}>
           <S.Nav>
@@ -60,7 +62,7 @@ function App() {
                 </Route>
                 <Route path="history" element={<History />} />
                 <Route path="post/:postId" element={<Post />} />
-                <Route path="*" element={<p>404</p>} />
+                <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
           </S.MainContent>

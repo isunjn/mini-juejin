@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Comments from "./Comments";
+import Loader from "../Loader";
 
 import { getArticleById } from "../../services/fake-api";
 import { addToHistory } from "../../services/history";
@@ -32,7 +33,7 @@ function Post() {
 
   return (
     <>
-      {isFetching && <p>Loading</p>}
+      {isFetching && <Loader />}
       {post && (
         <S.Container>
           <S.Article>

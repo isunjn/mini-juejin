@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import Loader from "../../Loader";
+
 import { getCommentsByArticleId } from "../../../services/fake-api";
 import getTimeDistanceStr from "../../../utils/getTimeDistanceStr";
 
@@ -25,7 +27,7 @@ function Comments({ postId }) {
 
   return (
     <>
-      {isFetching && <p>Loading Comments...</p>}
+      {isFetching && <Loader />}
       {comments && (
         <S.Container>
           <S.Title>评论 {total}</S.Title>

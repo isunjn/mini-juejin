@@ -3,6 +3,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 
 import SortByTab from "./SortByTab";
 import PostList from "../PostList";
+import Loader from "../Loader";
 
 import { getArticles } from "../../services/fake-api";
 
@@ -37,6 +38,9 @@ function PostsView() {
   useEffect(() => {
     setIsFetching(true);
     async function fetchArticles() {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 3000);
+      });
       const resp = await getArticles(theCategoryId, sortBy);
       setArticles(resp.data.articles);
       setIsFetching(false);
@@ -55,7 +59,7 @@ function PostsView() {
     <>
       <SortByTab sortBy={sortBy} handleSwitchSortBy={handleSwitchSortBy} />
 
-      {isFetching && <p>Loading Posts...</p>}
+      {isFetching && <Loader />}
       {articles && <PostList articles={articles} />}
     </>
   );

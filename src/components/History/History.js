@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 import PostList from "../PostList";
+import Loader from "../Loader";
 
 import { getArticleById } from "../../services/fake-api";
 import { getHistory, needToFetchHistory } from "../../services/history";
+
+import * as S from "./style";
 
 function History() {
   const [articles, setArticles] = useState(null);
@@ -32,8 +35,8 @@ function History() {
 
   return (
     <>
-      {isFetching && <p>Loading history...</p>}
-      {!articles && <p>No browsing history</p>}
+      {isFetching && <Loader />}
+      {!articles && <S.NoContent>无浏览记录</S.NoContent>}
       {articles && <PostList articles={articles} />}
     </>
   );
