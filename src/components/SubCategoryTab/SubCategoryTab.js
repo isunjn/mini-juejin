@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { CategoriesContext } from "../../Contexts/CategoriesContext";
 
@@ -25,12 +25,18 @@ function SubCategoryTab() {
           </Link>
 
           {subCategories.map((subCategory) => (
-            <NavLink
+            <Link
               to={`/${params.categoryName}/${subCategory.category_name}`}
               key={subCategory.category_id}
+              className={
+                params.subCategoryName &&
+                params.subCategoryName === subCategory.category_name
+                  ? "active"
+                  : ""
+              }
             >
               {subCategory.category_name}
-            </NavLink>
+            </Link>
           ))}
         </S.Container>
       )}
