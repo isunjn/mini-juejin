@@ -2,15 +2,16 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
-  margin: 1em 0 5em;
+  margin: 0.5em 0 5em;
 `;
 
 export const ListItem = styled.div`
   width: calc(100vw - 1.5em);
   margin: 0 .75em;
   padding: .75em 0;
-  border-top: 1px solid grey;
+  border-bottom: 1.5px solid #3b3b3b3b;
   color: grey;
+  cursor: pointer;
 `;
 
 export const ListItemTop = styled.div`
@@ -57,7 +58,7 @@ export const ListItemBottom = styled.div`
 
   img {
     margin: 0 1%;
-    width: 33%;
+    max-width: 33%;
   }
 `;
 

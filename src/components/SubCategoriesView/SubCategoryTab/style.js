@@ -1,21 +1,28 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.nav`
   overflow-x: auto;
   display: flex;
   flex-wrap: wrap;
-  border-bottom: 1px solid pink;
   background-color: whitesmoke;
+  position: sticky;
+  top: 2.4em;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
+
   a {
+    color: black;
+    text-decoration: none;
     background-color: white;
     border: none;
-    border-radius: 0.5em;
-    font-size: 1em;
-    padding: 0.5em 1em;
-    margin: 0.2em 0.5em;
+    border-radius: 0.8em;
+    font-size: 1.2em;
+    padding: 0.3em 0.6em;
+    margin: 0.5em 0.5em;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
     &.active {
       color: white;
-      background-color: orange;
+      background-color: #1e80ff;
+      box-shadow: 0px 1px 6px #1e80ff50;
     }
   }
 `;

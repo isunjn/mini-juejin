@@ -5,7 +5,9 @@ export const Container = styled.main`
 
 
 export const Header = styled.header`
-  border-bottom: 1px solid black;
+  background-color: white;
+  z-index: 999;
+
   img {
     display: block;
     margin: 10px auto;

@@ -8,15 +8,18 @@ export const Container = styled.nav`
   display: flex;
   justify-content: space-around;
   background-color: white;
-  border-top: 1px solid green;
+  box-shadow: 0px -4px 12px rgba(0,0,0,0.2);
 
   a {
+    color: black;
+    text-decoration: none;
     border: none;
     background-color: transparent;
     font-size: 1.25em;
+    margin: 0.25em 0;
     padding: 0.5em 1em;
     &.active {
-      color: orange;
+      color: #1e80ff;
     }
   }
 `;
