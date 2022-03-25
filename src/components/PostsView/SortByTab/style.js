@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 
 export const Container = styled.div`
-  margin: 2em 0 1em 0;
+  padding: 1em 0;
 `;
 
 export const Button = styled.button`
@@ -10,6 +10,7 @@ export const Button = styled.button`
   background-color: transparent;
   font-size: 1.25em;
   padding: 0 0.5em;
+  cursor: pointer;
   ${p => p.active && css`
     color: #1e80ff;
   `}

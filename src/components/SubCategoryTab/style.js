@@ -5,9 +5,7 @@ export const Container = styled.nav`
   display: flex;
   flex-wrap: wrap;
   background-color: whitesmoke;
-  position: sticky;
-  top: 2.4em;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.1);
 
   a {
     color: black;

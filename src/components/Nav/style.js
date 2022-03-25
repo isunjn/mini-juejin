@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 export const Header = styled.header`
   background-color: white;
-  z-index: 999;
+  height: 38px;
+  padding: 5px 0;
 
   img {
     display: block;
-    margin: 10px auto;
+    margin: 0 auto;
   }
 `;
 

@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
-export const Container = styled.main`
+export const Container = styled.div`
   width: 100%;
-  margin: 2em 0;
-  background-color: whitesmoke;
+  padding: 1em 0;
 `;
 
 export const Article = styled.article`
-  margin: 3em 0;
+  margin-bottom: 3em;
   padding: 0 1em;
   background-color: white;
 `;

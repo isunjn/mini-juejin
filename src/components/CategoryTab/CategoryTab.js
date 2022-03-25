@@ -11,8 +11,8 @@ function CategoryTab() {
   const categoryName = params.categoryName ? params.categoryName : "推荐";
 
   return (
-    <>
-      <S.Container>
+    <S.Container>
+      <S.CategoryTab>
         {categories.map((category) => (
           <Link
             to={`/${category.category_name}`}
@@ -22,10 +22,10 @@ function CategoryTab() {
             {category.category_name}
           </Link>
         ))}
-      </S.Container>
+      </S.CategoryTab>
 
       <Outlet />
-    </>
+    </S.Container>
   );
 }
 

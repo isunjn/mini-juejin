@@ -1,15 +1,13 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+`;
 
-export const Container = styled.nav`
+export const CategoryTab = styled.nav`
   overflow-x: auto;
   display: flex;
-  position: sticky;
-  top: 0;
   background-color: white;
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
-  height: 2.5em;
-  z-index: 99;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
 
   a {
     color: black;
