@@ -2,9 +2,9 @@ import React from "react";
 
 import * as S from "./style";
 
-function Loader() {
+function Loader({ center }) {
   return (
-    <S.Container>
+    <S.Container center={center?true:false}>
       <div></div>
       <div></div>
       <div></div>

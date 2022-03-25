@@ -1,11 +1,16 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   display: block;
   width: 80px;
   height: 80px;
   position: relative;
-  margin: 30vh auto 50vh;
+  margin-left: calc(50vw - 40px);
+  margin-bottom: 5em;
+
+  ${p => p.center && css`
+    margin-top: 30vh;  
+  `}
 
   div {
     box-sizing: border-box;

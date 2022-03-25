@@ -5,8 +5,10 @@ export const Container = styled.nav`
   bottom: 0;
   z-index: 10;
   width: 100%;
+  height: 3.5em;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   background-color: white;
   box-shadow: 0px -4px 12px rgba(0,0,0,0.2);
 

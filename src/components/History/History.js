@@ -35,7 +35,7 @@ function History() {
 
   return (
     <>
-      {isFetching && <Loader />}
+      {isFetching && <Loader center />}
       {!articles && <S.NoContent>无浏览记录</S.NoContent>}
       {articles && <PostList articles={articles} />}
     </>

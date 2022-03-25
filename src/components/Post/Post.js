@@ -33,7 +33,7 @@ function Post() {
 
   return (
     <>
-      {isFetching && <Loader />}
+      {isFetching && <Loader center />}
       {post && (
         <S.Container>
           <S.Article>

@@ -34,7 +34,7 @@ function App() {
 
   return (
     <>
-      {isFetching && <Loader />}
+      {isFetching && <Loader center />}
       {categories && (
         <CategoriesContext.Provider value={categories}>
           <S.Nav>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
-  margin: 0.5em 0 5em;
+  margin: 0.5em 0 2em;
 `;
 
 export const ListItem = styled.div`

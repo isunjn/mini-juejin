@@ -5,68 +5,112 @@ import SortByTab from "./SortByTab";
 import PostList from "../PostList";
 import Loader from "../Loader";
 import NotFound from "../NotFound";
+import InfiniteScroll from "../InfiniteScroll";
 
 import { getArticles } from "../../services/fake-api";
 
 import { CategoriesContext } from "../../Contexts/CategoriesContext";
 
+import * as S from "./style";
+
 function PostsView() {
   const categories = useContext(CategoriesContext);
   const params = useParams();
-
-  let notFound = false;
-  let theCategoryId = 0;
-  if (params.categoryName) {
-    const mainCategory = categories.find(
-      (category) => category.category_name === params.categoryName
-    );
-    if (!mainCategory) {
-      notFound = true;
-    } else if (params.subCategoryName) {
-      const subCategory = mainCategory.children.find(
-        (category) => category.category_name === params.subCategoryName
-      );
-      theCategoryId = subCategory.category_id;
-    } else {
-      theCategoryId = mainCategory.category_id;
-    }
-  }
-
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const [isFetching, setIsFetching] = useState(false);
+  const [articles, setArticles] = useState([]);
+  const [theCategoryId, setTheCategoryId] = useState(0);
+  const [notFound, setNotFound] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const [noMore, setNoMore] = useState(false);
+
   const sortBy = searchParams.get("sort") || "hot";
 
-  const [articles, setArticles] = useState(null);
-  const [isFetching, setIsFetching] = useState(false);
+  useEffect(() => {
+    let newCategoryId = 0;
+    let notFound = false;
+    let mainCategory;
+    if (params.categoryName) {
+      mainCategory = categories.find(
+        (c) => c.category_name === params.categoryName
+      );
+      if (mainCategory) newCategoryId = mainCategory.category_id;
+      else notFound = true;
+    }
+    if (mainCategory && params.subCategoryName) {
+      const subCategory = mainCategory.children.find(
+        (c) => c.category_name === params.subCategoryName
+      );
+      if (subCategory) newCategoryId = subCategory.category_id;
+      else notFound = true;
+    }
+    if (notFound) {
+      setNotFound(true);
+    } else {
+      setOffset(0);
+      setArticles([]);
+      setTheCategoryId(newCategoryId);
+    }
+  }, [categories, params.categoryName, params.subCategoryName]);
 
   useEffect(() => {
     setIsFetching(true);
     async function fetchArticles() {
       await new Promise((resolve) => {
-        setTimeout(resolve, 3000);
+        setTimeout(resolve, 1000);
       });
       const resp = await getArticles(theCategoryId, sortBy);
+      if (!resp.has_more) {
+        setNoMore(true);
+      }
       setArticles(resp.data.articles);
       setIsFetching(false);
     }
     fetchArticles();
   }, [theCategoryId, sortBy]);
 
+  const loadMore = async () => {
+    setIsFetching(true);
+    await new Promise((resolve) => {
+      setTimeout(resolve, 1000);
+    });
+    const resp = await getArticles(theCategoryId, sortBy, offset + 10);
+    if (!resp.has_more) {
+      setNoMore(true);
+    }
+    setArticles((articles) => articles.concat(resp.data.articles));
+    setIsFetching(false);
+    setOffset(offset + 10);
+  };
+
   const handleSwitchSortBy = (newSortBy) => {
+    if (newSortBy === sortBy) return;
+    setArticles([]);
     setSearchParams({
       sort: newSortBy,
     });
   };
 
+  if (notFound) {
+    return <NotFound />;
+  }
+
   return (
     <>
-      {notFound && <NotFound />}
-      {!notFound && (
-        <>
-          <SortByTab sortBy={sortBy} handleSwitchSortBy={handleSwitchSortBy} />
-          {isFetching && <Loader />}
-          {articles && <PostList articles={articles} />}
-        </>
+      <SortByTab sortBy={sortBy} handleSwitchSortBy={handleSwitchSortBy} />
+      {articles.length > 0 && (
+        <InfiniteScroll
+          loadMore={loadMore}
+          isFetching={isFetching}
+          threshold={50}
+          noMore={noMore}
+        >
+          <PostList articles={articles} />
+        </InfiniteScroll>
       )}
+      {isFetching && <Loader center={articles.length === 0 ? true : false} />}
+      {noMore && <S.NoMore>没有更多了</S.NoMore>}
     </>
   );
 }
