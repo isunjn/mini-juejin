@@ -49,6 +49,7 @@ function PostsView() {
       setNotFound(true);
     } else {
       setOffset(0);
+      setNoMore(false);
       setArticles([]);
       setTheCategoryId(newCategoryId);
     }
@@ -87,6 +88,7 @@ function PostsView() {
   const handleSwitchSortBy = (newSortBy) => {
     if (newSortBy === sortBy) return;
     setArticles([]);
+    setNoMore(false);
     setSearchParams({
       sort: newSortBy,
     });
@@ -110,7 +112,7 @@ function PostsView() {
         </InfiniteScroll>
       )}
       {isFetching && <Loader center={articles.length === 0 ? true : false} />}
-      {noMore && <S.NoMore>没有更多了</S.NoMore>}
+      {(!isFetching && noMore) && <S.NoMore>没有更多了</S.NoMore>}
     </>
   );
 }

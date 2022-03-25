@@ -55,7 +55,7 @@ function Comments({ postId }) {
           </InfiniteScroll>
         )}
         {isFetching && <Loader />}
-        {noMore && <S.NoMore>没有更多了</S.NoMore>}
+        {(!isFetching && noMore) && <S.NoMore>没有更多了</S.NoMore>}
       </S.Container>
     </>
   );
