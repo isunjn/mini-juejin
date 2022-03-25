@@ -10,7 +10,7 @@ export const Container = styled.nav`
   justify-content: space-around;
   align-items: center;
   background-color: white;
-  box-shadow: 0px -4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2);
 
   a {
     color: black;

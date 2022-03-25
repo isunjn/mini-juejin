@@ -14,7 +14,6 @@ export const NoMore = styled.div`
   font-size: 1.25em;
 `;
 
-
 export const Container = styled.div`
   background-color: white;
   color: grey;
@@ -24,7 +23,6 @@ export const Title = styled.div`
   padding: 0.5em;
   font-size: 2em;
 `;
-
 
 export const CommentContainer = styled.div`
   width: 100%;

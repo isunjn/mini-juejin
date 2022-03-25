@@ -1,4 +1,4 @@
-const KEY_HISTORY = 'user_browsing_history';
+const KEY_HISTORY = "user_browsing_history";
 
 let needToFetch = true;
 
@@ -8,7 +8,7 @@ export function needToFetchHistory() {
 
 export async function addToHistory(postId) {
   let history = JSON.parse(localStorage.getItem(KEY_HISTORY)) || [];
-  history = history.filter(id => id !== postId);
+  history = history.filter((id) => id !== postId);
   history.push(postId);
   if (history.length > 100) {
     history.shift();

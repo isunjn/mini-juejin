@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
-
 export const Container = styled.div`
   margin: 0.5em 0 2em;
 `;
 
 export const ListItem = styled.div`
   width: calc(100vw - 1.5em);
-  margin: 0 .75em;
-  padding: .75em 0;
+  margin: 0 0.75em;
+  padding: 0.75em 0;
   border-bottom: 1.5px solid #3b3b3b3b;
   color: grey;
   cursor: pointer;
@@ -17,10 +16,10 @@ export const ListItem = styled.div`
 export const ListItemTop = styled.div`
   width: 100%;
   span {
-    padding-right: .5em;
+    padding-right: 0.5em;
   }
   span + span {
-    padding-left: .5em;
+    padding-left: 0.5em;
     border-left: 2px solid whitesmoke;
   }
 `;
@@ -63,13 +62,12 @@ export const ListItemBottom = styled.div`
 `;
 
 export const ListItemCounts = styled.div`
-
   span {
     display: inline-flex;
-    padding-right: .5em;
+    padding-right: 0.5em;
   }
   span + span {
-    padding-left: .5em;
+    padding-left: 0.5em;
   }
   img {
     width: 1em;

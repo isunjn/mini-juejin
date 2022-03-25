@@ -10,4 +10,3 @@ export const Header = styled.header`
     margin: 0 auto;
   }
 `;
-

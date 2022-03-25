@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
 
-import { CategoriesContext } from "../../Contexts/CategoriesContext";
+import { CategoriesContext } from "../../contexts/CategoriesContext";
 
 import * as S from "./style";
 

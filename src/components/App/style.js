@@ -5,5 +5,4 @@ export const Nav = styled.div`
   top: -38px;
 `;
 
-export const MainContent = styled.main`
-`;
+export const MainContent = styled.main``;

@@ -31,7 +31,8 @@ export const MetaText = styled.div`
   flex-direction: column;
   row-gap: 0.5em;
   justify-content: space-between;
-  .top, .bottom {
+  .top,
+  .bottom {
     display: flex;
     column-gap: 1em;
   }
@@ -49,9 +50,8 @@ export const MetaText = styled.div`
   }
 `;
 
-export const CoverImage =styled.img`
+export const CoverImage = styled.img`
   width: 100%;
-
 `;
 
 export const Content = styled.div`

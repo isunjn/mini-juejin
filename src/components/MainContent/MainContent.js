@@ -6,7 +6,7 @@ function MainContent() {
     <>
       <Outlet />
     </>
-  )
+  );
 }
 
 export default MainContent;

@@ -20,7 +20,7 @@ function Comments({ postId }) {
       setIsFetching(true);
       await new Promise((resolve) => {
         setTimeout(resolve, 1000);
-      });  
+      });
       const resp = await getCommentsByArticleId(postId, offset);
       setComments((comments) => comments.concat(resp.data.comments));
       setTotal(resp.total);
@@ -46,7 +46,7 @@ function Comments({ postId }) {
           <InfiniteScroll
             loadMore={loadMore}
             isFetching={isFetching}
-            threshold={50} 
+            threshold={50}
             noMore={noMore}
           >
             {comments.map((comment) => (
@@ -55,7 +55,7 @@ function Comments({ postId }) {
           </InfiniteScroll>
         )}
         {isFetching && <Loader />}
-        {(!isFetching && noMore) && <S.NoMore>没有更多了</S.NoMore>}
+        {!isFetching && noMore && <S.NoMore>没有更多了</S.NoMore>}
       </S.Container>
     </>
   );

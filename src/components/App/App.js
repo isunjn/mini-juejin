@@ -12,7 +12,7 @@ import Post from "../Post";
 import NotFound from "../NotFound";
 import Loader from "../Loader";
 
-import { CategoriesContext } from "../../Contexts/CategoriesContext";
+import { CategoriesContext } from "../../contexts/CategoriesContext";
 
 import { getCategories } from "../../services/fake-api";
 
@@ -56,7 +56,7 @@ function App() {
             <Routes>
               <Route path="/" element={<MainContent />}>
                 <Route index element={<PostsView />} />
-                <Route path=":categoryName" element={<Outlet />} >
+                <Route path=":categoryName" element={<Outlet />}>
                   <Route index element={<PostsView />} />
                   <Route path=":subCategoryName" element={<PostsView />} />
                 </Route>

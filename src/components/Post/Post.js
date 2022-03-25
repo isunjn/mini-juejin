@@ -42,12 +42,8 @@ function Post() {
               <img src={post.author_user_info.avatar_large} alt="avatar" />
               <S.MetaText>
                 <div className="top">
-                  <div className="name">
-                    {post.author_user_info.user_name}
-                  </div>
-                  <div className="level">
-                    Lv{post.author_user_info.level}
-                  </div>
+                  <div className="name">{post.author_user_info.user_name}</div>
+                  <div className="level">Lv{post.author_user_info.level}</div>
                 </div>
                 <div className="bottom">
                   <div className="datetime">
@@ -59,8 +55,12 @@ function Post() {
                 </div>
               </S.MetaText>
             </S.Meta>
-            {post.article_info.cover_image && <S.CoverImage src={post.article_info.cover_image} alt="cover" />}
-            <S.Content dangerouslySetInnerHTML={{__html: post.article_content}} />
+            {post.article_info.cover_image && (
+              <S.CoverImage src={post.article_info.cover_image} alt="cover" />
+            )}
+            <S.Content
+              dangerouslySetInnerHTML={{ __html: post.article_content }}
+            />
           </S.Article>
           <Comments postId={postId} />
         </S.Container>

@@ -12,14 +12,14 @@ import * as S from "./style";
 function PostList({ articles }) {
   const navigate = useNavigate();
 
-  const handleOpenPost = (id) =>  {
+  const handleOpenPost = (id) => {
     navigate("/post/" + id);
   };
 
   return (
     <S.Container>
       {articles.map((article) => (
-        <S.ListItem 
+        <S.ListItem
           key={article.article_id}
           onClick={() => handleOpenPost(article.article_id)}
         >

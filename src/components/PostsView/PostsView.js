@@ -9,7 +9,7 @@ import InfiniteScroll from "../InfiniteScroll";
 
 import { getArticles } from "../../services/fake-api";
 
-import { CategoriesContext } from "../../Contexts/CategoriesContext";
+import { CategoriesContext } from "../../contexts/CategoriesContext";
 
 import * as S from "./style";
 
@@ -112,7 +112,7 @@ function PostsView() {
         </InfiniteScroll>
       )}
       {isFetching && <Loader center={articles.length === 0 ? true : false} />}
-      {(!isFetching && noMore) && <S.NoMore>没有更多了</S.NoMore>}
+      {!isFetching && noMore && <S.NoMore>没有更多了</S.NoMore>}
     </>
   );
 }

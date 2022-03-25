@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-`;
+export const Container = styled.div``;
 
 export const CategoryTab = styled.nav`
   overflow-x: auto;

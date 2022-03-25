@@ -13,7 +13,7 @@ function Nav() {
 
       <Outlet />
     </>
-  )
+  );
 }
 
 export default Nav;

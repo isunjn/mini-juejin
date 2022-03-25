@@ -8,9 +8,11 @@ export const Container = styled.div`
   margin-left: calc(50vw - 40px);
   margin-bottom: 5em;
 
-  ${p => p.center && css`
-    margin-top: 30vh;  
-  `}
+  ${(p) =>
+    p.center &&
+    css`
+      margin-top: 30vh;
+    `}
 
   div {
     box-sizing: border-box;
