@@ -12,7 +12,7 @@ export const Container = styled.nav`
   background-color: white;
   box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2);
 
-  a {
+  a, button {
     color: black;
     text-decoration: none;
     border: none;
