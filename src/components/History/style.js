@@ -13,3 +13,10 @@ export const NoContent = styled.div`
   border-radius: 4px;
   padding: 0.5em 1em;
 `;
+
+export const NoMore = styled.div`
+  width: max-content;
+  margin: 2em auto 5em;
+  color: gery;
+  font-size: 1.25em;
+`;

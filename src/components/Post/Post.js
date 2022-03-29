@@ -5,7 +5,7 @@ import Comments from "./Comments";
 import Loader from "../Loader";
 
 import { getArticleById } from "../../services/fake-api";
-import { addToHistory } from "../../services/history";
+import historyService from "../../services/history";
 
 import getDateTimeStr from "../../utils/getDateTimeStr";
 
@@ -24,7 +24,7 @@ function Post() {
       const resp = await getArticleById(postId);
       if (resp.code === 0) {
         setPost(resp.data.article);
-        addToHistory(postId);
+        historyService.addOne(postId);
       }
       setIsFetching(false);
       window.scrollTo(0,0);

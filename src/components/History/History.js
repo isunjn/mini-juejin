@@ -4,7 +4,7 @@ import PostList from "../PostList";
 import Loader from "../Loader";
 
 import { getArticleById } from "../../services/fake-api";
-import { getHistory, needToFetchHistory } from "../../services/history";
+import historyService from "../../services/history";
 
 import * as S from "./style";
 
@@ -15,20 +15,25 @@ function History() {
   useEffect(() => {
     async function fetchHistory() {
       setIsFetching(true);
-      const history = await getHistory();
-      if (history) {
-        const articles = [];
-        for (const postId of history) {
-          const resp = await getArticleById(postId);
-          if (resp.code === 0) {
-            articles.push(resp.data.article);
+      try {
+        const history = await historyService.getAll();
+
+        if (history.items.length > 0) {
+          const articles = [];
+          for (const item of history.items) {
+            const resp = await getArticleById(item.articleId);
+            if (resp.code === 0) {
+              articles.push(resp.data.article);
+            }
           }
+          setArticles(articles.reverse());
         }
-        setArticles(articles.reverse());
+      } catch (error) {
+        console.error('error in fetching history');
       }
       setIsFetching(false);
     }
-    if (needToFetchHistory()) {
+    if (historyService.needToFetchHistory()) {
       fetchHistory();
     }
   });
@@ -36,8 +41,13 @@ function History() {
   return (
     <S.Container>
       {isFetching && <Loader center />}
-      {!articles && <S.NoContent>无浏览记录</S.NoContent>}
-      {articles && <PostList articles={articles} />}
+      {(!isFetching && !articles) && <S.NoContent>无浏览记录</S.NoContent>}
+      {articles && (
+        <>
+          <PostList articles={articles} />
+          <S.NoMore>没有更多了</S.NoMore>
+        </>
+      )}
     </S.Container>
   );
 }

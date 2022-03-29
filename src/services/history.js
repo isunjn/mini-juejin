@@ -1,23 +1,32 @@
-const KEY_HISTORY = "user_browsing_history";
+import axios from "axios";
+const baseUrl = "https://qconq5.api.cloudendpoint.cn/history";
 
 let needToFetch = true;
 
-export function needToFetchHistory() {
+function needToFetchHistory() {
   return needToFetch;
 }
 
-export async function addToHistory(postId) {
-  let history = JSON.parse(localStorage.getItem(KEY_HISTORY)) || [];
-  history = history.filter((id) => id !== postId);
-  history.push(postId);
-  if (history.length > 100) {
-    history.shift();
-  }
-  localStorage.setItem(KEY_HISTORY, JSON.stringify(history));
-  needToFetch = true;
+async function getAll() {
+  const resp = await axios.get(baseUrl);
+  console.log(resp);
+  if (resp.status !== 200) throw new Error();
+  needToFetch = false;
+  return resp.data;
 }
 
-export async function getHistory() {
-  needToFetch = false;
-  return JSON.parse(localStorage.getItem(KEY_HISTORY));
+async function addOne(articleId) {
+  const resp = await axios.post(baseUrl, {articleId: articleId});
+  console.log(resp);
+  if (resp.status !== 200) throw new Error();
+  needToFetch = true;
+  return resp.data;
 }
+
+const historyService = {
+  needToFetchHistory,
+  getAll,
+  addOne,
+}
+
+export default historyService;
