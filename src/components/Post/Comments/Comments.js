@@ -50,7 +50,16 @@ function Comments({ postId }) {
             noMore={noMore}
           >
             {comments.map((comment) => (
-              <Comment key={comment.comment_id} comment={comment} />
+              <>
+                <Comment key={comment.comment_id} comment={comment} />
+                {comment.reply_infos.length > 0 && (
+                  <S.RepliesContainer>
+                    {comment.reply_infos.map(reply => (
+                        <Reply key={reply.reply_id} reply={reply} />
+                    ))}
+                  </S.RepliesContainer>
+                )}
+              </>
             ))}
           </InfiniteScroll>
         )}
@@ -69,11 +78,12 @@ function Comment({ comment }) {
       <S.CommentAvatar src={comment.user_info.avatar_large} alt="avatar" />
       <S.CommentInfo>
         <div className="top">
-          <div className="name">{comment.user_info.user_name}</div>
-          {comment.user_info.level > 0 && (
-            <div className="level">Lv{comment.user_info.level}</div>
-          )}
-          <div className="jobtitle">{comment.user_info.job_title}</div>
+          <div className="name">
+            {comment.user_info.user_name}
+            {comment.user_info.level > 0 && (
+              <span className="level">Lv{comment.user_info.level}</span>
+            )}
+          </div>
           <div className="time">
             {getTimeDistanceStr(comment.comment_info.ctime)}
           </div>
@@ -85,3 +95,29 @@ function Comment({ comment }) {
     </S.CommentContainer>
   );
 }
+
+function Reply({ reply }) {
+  return (
+    <S.ReplyContainer>
+      <S.CommentAvatar src={reply.user_info.avatar_large} alt="avatar" />
+      <S.CommentInfo>
+        <div className="top">
+          <div className="name">
+            {reply.user_info.user_name}
+            {reply.user_info.level > 0 && (
+              <span className="level">Lv{reply.user_info.level}</span>
+            )}
+          </div>
+          <div className="time">
+            {getTimeDistanceStr(reply.reply_info.ctime)}
+          </div>
+        </div>
+        <div className="bottom">
+          <div className="content">{reply.reply_info.reply_content}</div>
+        </div>
+      </S.CommentInfo>
+    </S.ReplyContainer>
+  );
+}
+
+

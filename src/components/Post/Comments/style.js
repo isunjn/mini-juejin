@@ -55,13 +55,12 @@ export const CommentInfo = styled.div`
       text-overflow: ellipsis;
     }
     .level {
-      height: min-content;
-      align-self: center;
       font-size: 0.5em;
-      border-radius: 3px;
+      border-radius: 2px;
       background-color: tomato;
       color: white;
-      padding: 2px 4px;
+      padding: 1px 4px;
+      margin-left: 5px;
       min-width: max-content;
     }
     .jobtitle {
@@ -77,4 +76,19 @@ export const CommentInfo = styled.div`
     font-size: 1.1em;
     color: black;
   }
+`;
+
+export const ReplyContainer = styled.div`
+  padding: 2em 1em;
+  display: flex;
+  column-gap: 5%;
+`;
+
+export const RepliesContainer = styled.div`
+  background-color: whitesmoke;
+  border-radius: 6px;
+  width: calc(80%-1em);
+  margin-left: calc(20%);
+  margin-right: 1em;
+
 `;
