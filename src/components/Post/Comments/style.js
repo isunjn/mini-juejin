@@ -33,8 +33,8 @@ export const CommentContainer = styled.div`
 `;
 
 export const CommentAvatar = styled.img`
-  width: 15%;
-  height: 15%;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
 `;
 
@@ -47,6 +47,7 @@ export const CommentInfo = styled.div`
   .top {
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     gap: 0.5em;
     div {
@@ -55,7 +56,7 @@ export const CommentInfo = styled.div`
       text-overflow: ellipsis;
     }
     .level {
-      font-size: 0.5em;
+      font-size: 0.75em;
       border-radius: 2px;
       background-color: tomato;
       color: white;

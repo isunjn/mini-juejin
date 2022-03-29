@@ -8,7 +8,7 @@ function Nav() {
   return (
     <>
       <S.Header>
-        <img src={logo} alt="logo" />
+        <a href="/"><img src={logo} alt="logo" /></a>
       </S.Header>
 
       <Outlet />
