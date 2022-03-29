@@ -19,7 +19,7 @@ function Comments({ postId }) {
     async function fetchComments() {
       setIsFetching(true);
       await new Promise((resolve) => {
-        setTimeout(resolve, 1000);
+        setTimeout(resolve, 500);
       });
       const resp = await getCommentsByArticleId(postId, offset);
       setComments((comments) => comments.concat(resp.data.comments));

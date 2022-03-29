@@ -39,22 +39,22 @@ function PostList({ articles }) {
               <h1>{article.article_info.title}</h1>
               <p>{article.article_info.brief_content}</p>
               <S.ListItemCounts>
-                <span>
+                <div>
                   <img src={viewIcon} alt="view count" />
-                  {getCountStr(article.article_info.view_count)}
-                </span>
-                <span>
+                  <span>{getCountStr(article.article_info.view_count)}</span>
+                </div>
+                <div>
                   <img src={diggIcon} alt="like count" />
-                  {getCountStr(article.article_info.digg_count)}
-                </span>
-                <span>
+                  <span>{getCountStr(article.article_info.digg_count)}</span>
+                </div>
+                <div>
                   <img src={commentIcon} alt="comment count" />
-                  {getCountStr(article.article_info.comment_count)}
-                </span>
+                  <span>{getCountStr(article.article_info.comment_count)}</span>
+                </div>
               </S.ListItemCounts>
             </div>
             {article.article_info.cover_image && (
-              <img src={article.article_info.cover_image} alt="cover" />
+              <img className="cover" src={article.article_info.cover_image} alt="cover" />
             )}
           </S.ListItemBottom>
         </S.ListItem>

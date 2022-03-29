@@ -27,6 +27,7 @@ function Post() {
         addToHistory(postId);
       }
       setIsFetching(false);
+      window.scrollTo(0,0);
     }
     fetchPost();
   }, [postId]);

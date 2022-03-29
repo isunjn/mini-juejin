@@ -59,7 +59,7 @@ function PostsView() {
     setIsFetching(true);
     async function fetchArticles() {
       await new Promise((resolve) => {
-        setTimeout(resolve, 1000);
+        setTimeout(resolve, 500);
       });
       const resp = await getArticles(theCategoryId, sortBy);
       if (!resp.has_more) {

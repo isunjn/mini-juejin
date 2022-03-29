@@ -34,11 +34,11 @@ function History() {
   });
 
   return (
-    <>
+    <S.Container>
       {isFetching && <Loader center />}
       {!articles && <S.NoContent>无浏览记录</S.NoContent>}
       {articles && <PostList articles={articles} />}
-    </>
+    </S.Container>
   );
 }
 

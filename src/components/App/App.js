@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 
 import Nav from "../Nav";
-import MainContent from "../MainContent";
 import MainTab from "../MainTab";
 import CategoryTab from "../CategoryTab";
 import SubCategoryTab from "../SubCategoryTab";
@@ -54,7 +53,7 @@ function App() {
 
           <S.MainContent>
             <Routes>
-              <Route path="/" element={<MainContent />}>
+              <Route path="/" element={<Outlet />}>
                 <Route index element={<PostsView />} />
                 <Route path=":categoryName" element={<Outlet />}>
                   <Route index element={<PostsView />} />

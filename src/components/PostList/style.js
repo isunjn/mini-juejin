@@ -55,23 +55,28 @@ export const ListItemBottom = styled.div`
     text-overflow: ellipsis;
   }
 
-  img {
+  img.cover {
     margin: 0 1%;
     max-width: 33%;
+    max-height: 100px;
   }
 `;
 
 export const ListItemCounts = styled.div`
-  span {
-    display: inline-flex;
+  display: flex;
+  div {
+    display: flex;
+    gap: 5px;
+    align-items: center;
     padding-right: 0.5em;
+    height: 1em;
+    font-size: 1em;
   }
-  span + span {
+  div + div {
     padding-left: 0.5em;
   }
   img {
-    width: 1em;
-    margin: 0 0.2em;
-    align-self: center;
+    width: 16px;
+    height: 16px;
   }
 `;
