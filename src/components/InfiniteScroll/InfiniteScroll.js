@@ -5,19 +5,21 @@ function InfiniteScroll({ loadMore, isFetching, noMore, threshold, children }) {
 
   useEffect(() => {
     if (isFetching || noMore || !el) return;
-    function scrollListener() {
+    function scrollHandler() {
       const offset =
         el.offsetTop +
         el.offsetHeight -
         window.pageYOffset -
         window.innerHeight;
+      console.log('calc');
       if (offset < threshold) {
         loadMore();
       }
     }
-    window.addEventListener("scroll", scrollListener);
+    const throttledScrollHandler = throttle(scrollHandler, 300);
+    window.addEventListener("scroll", throttledScrollHandler);
     return () => {
-      window.removeEventListener("scroll", scrollListener);
+      window.removeEventListener("scroll", throttledScrollHandler);
     };
   }, [isFetching, noMore, el, loadMore, threshold]);
 
@@ -25,3 +27,23 @@ function InfiniteScroll({ loadMore, isFetching, noMore, threshold, children }) {
 }
 
 export default InfiniteScroll;
+
+
+// simple throttle implement
+function throttle(fn, interval) {
+  let needToExec = true, isFirstTime = true;
+  return function() {
+    if (isFirstTime) {
+      fn.apply(this, arguments);
+      isFirstTime = false;
+      return;
+    }
+    if (needToExec) {
+      needToExec = false;
+      setTimeout(() => {
+        fn.apply(this, arguments);
+        needToExec = true;
+      }, interval);
+    }
+  }
+}
