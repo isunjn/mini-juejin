@@ -11,7 +11,6 @@ function InfiniteScroll({ loadMore, isFetching, noMore, threshold, children }) {
         el.offsetHeight -
         window.pageYOffset -
         window.innerHeight;
-      console.log('calc');
       if (offset < threshold) {
         loadMore();
       }

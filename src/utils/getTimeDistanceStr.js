@@ -1,9 +1,9 @@
 function getTimeDistanceStr(time) {
   const ms = Date.now() - parseInt(time) * 1000;
-  const mins = parseInt(ms / 1000 / 60);
-  const hours = parseInt(mins / 60);
-  const days = parseInt(hours / 24);
-  const years = parseInt(days / 365);
+  const mins = Math.floor(ms / 1000 / 60);
+  const hours = Math.floor(mins / 60);
+  const days = Math.floor(hours / 24);
+  const years = Math.floor(days / 365);
   if (years !== 0) {
     return `${years}年前`;
   } else if (days !== 0) {

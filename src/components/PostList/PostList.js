@@ -25,13 +25,7 @@ function PostList({ articles }) {
         >
           <S.ListItemTop>
             <span>{article.author_user_info.user_name}</span>
-            <span>
-              {getTimeDistanceStr(
-                article.article_info.mtime
-                  ? article.article_info.mtime
-                  : article.article_info.ctime
-              )}
-            </span>
+            <span>{getTimeDistanceStr(article.article_info.ctime)}</span>
           </S.ListItemTop>
 
           <S.ListItemBottom>
